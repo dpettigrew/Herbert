@@ -39,7 +39,7 @@ public class JSON {
         self.init(data: string.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false))
     }
 
-    private class func decompose(object: AnyObject) -> AnyObject {
+    internal class func decompose(object: AnyObject) -> AnyObject {
         switch object {
         case let array as NSArray:
             var newArray = Array<AnyObject>()

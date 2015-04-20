@@ -1,0 +1,18 @@
+{
+    "name": "Dennis",
+    "attrs": [
+        "dirty",
+        "ugly",
+        "smelly",
+        "irritating"
+    ],
+    "friends": [
+        {
+            "name": "Bedevere"
+        },
+        {
+            "name": "Arthur"
+        }
+    ],
+    "dirtIndex": 3.14
+}

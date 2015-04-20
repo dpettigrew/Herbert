@@ -299,10 +299,54 @@ class THGJSONTests: XCTestCase {
             if let json = json {
                 let array = json.asArray
                 if let array = array {
-                    
+                    let firstItem: NSDictionary = array[0] as! NSDictionary
+                    let value: String = firstItem.valueForKey("name") as! String
+                    XCTAssertTrue(value == "Bedevere", "We aren't getting an array back!")
                 } else {
-                    XCTAssertTrue(array is Array, "We aren't getting an array back!")
+                    XCTAssertTrue(1 == 0, "We aren't getting an array back!")
                 }
+            } else {
+                XCTAssert(1 == 0, "We didn't get valid json input here, what gives?")
+            }
+        } else {
+            XCTAssert(file != nil, "Something happened to the test file, call 911!")
+        }
+    }
+
+    func testDictionaryAccessor() {
+        let file: String? = NSBundle(forClass: THGJSONTests.self).pathForResource("jsontest_dictionary.json", ofType: nil)
+        if let file = file {
+            let data = NSData(contentsOfFile: file)
+
+            let json = JSON(data: data)
+
+            if let json = json {
+                let dict = json.asDictionary
+                if let dict = dict {
+                    let attrs: NSArray = dict["attrs"] as! NSArray
+                    let uglyItem: NSString = attrs[1] as! NSString
+                    XCTAssertTrue(uglyItem == "ugly", "We aren't getting the proper value back!")
+                } else {
+                    XCTAssertTrue(1 == 0, "We aren't getting an dictionary back!")
+                }
+            } else {
+                XCTAssert(1 == 0, "We didn't get valid json input here, what gives?")
+            }
+        } else {
+            XCTAssert(file != nil, "Something happened to the test file, call 911!")
+        }
+    }
+    
+    func testJSONObjectToString() {
+        let file: String? = NSBundle(forClass: THGJSONTests.self).pathForResource("jsontest_dictionary.json", ofType: nil)
+        if let file = file {
+            let data = NSData(contentsOfFile: file)
+
+            let json = JSON(data: data)
+
+            if let json = json {
+                let jsonString = json.asJSONString()
+                println(jsonString)
             } else {
                 XCTAssert(1 == 0, "We didn't get valid json input here, what gives?")
             }

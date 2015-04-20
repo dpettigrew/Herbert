@@ -96,26 +96,29 @@ extension JSON: Printable {
     // MARK: Collection type conversion
 
     public var asArray:Array<AnyObject>? {
+        var result: Array<AnyObject>? = nil
         switch rawValue {
         case let array as NSArray:
-            var result = Array<JSON>()
-            for item in array {
-                switch item.rawValue {
-                case let anArray as NSArray:
-                    result.append(item.asArray)
-                default:
-                    // do nothing.
-                }
-                if let value = JSON(object: item) {
-                    result.append(value)
-                }
-            }
-            return result
+            result = JSON.decompose(array) as? Array<AnyObject>
         default:
-            return nil
+            result = nil
         }
+
+        return result
     }
 
+    public var asDictionary:Dictionary<String, AnyObject>? {
+        var result: Dictionary<String, AnyObject>? = nil
+        switch rawValue {
+        case let dictionary as NSDictionary:
+            result = JSON.decompose(dictionary) as? Dictionary<String, AnyObject>
+        default:
+            result = nil
+        }
+
+        return result
+    }
+    
     // MARK: String conversion
 
     public var asString: String? {

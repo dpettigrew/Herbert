@@ -355,5 +355,32 @@ class THGJSONTests: XCTestCase {
         }
 
     }
+
+    func testDictionaryIterator() {
+        let file: String? = NSBundle(forClass: THGJSONTests.self).pathForResource("jsontest_dictionary.json", ofType: nil)
+        if let file = file {
+            let data = NSData(contentsOfFile: file)
+
+            let json = JSON(data: data)
+
+            if let json = json {
+                var dict = Dictionary<String, AnyObject>()
+
+                for (key, value) in json {
+                    dict[key as! String] = value
+                }
+
+                let dirtIndex = dict["dirtIndex"]?.doubleValue
+                XCTAssertTrue(dirtIndex == 3.14, "The items weren't iterated properly!")
+
+            } else {
+                XCTAssert(1 == 0, "We didn't get valid json input here, what gives?")
+            }
+        } else {
+            XCTAssert(file != nil, "Something happened to the test file, call 911!")
+        }
+        
+
+    }
     
 }

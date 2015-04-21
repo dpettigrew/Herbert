@@ -12,6 +12,7 @@
 		CA1EBF951ADB726E005F128E /* jsontest_simple.json in Resources */ = {isa = PBXBuildFile; fileRef = CA1EBF941ADB726E005F128E /* jsontest_simple.json */; };
 		CA1EBF971ADB736B005F128E /* jsontest_array.json in Resources */ = {isa = PBXBuildFile; fileRef = CA1EBF961ADB736B005F128E /* jsontest_array.json */; };
 		CA33525A1AE5BC1B0081096F /* JSONString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3352591AE5BC1B0081096F /* JSONString.swift */; };
+		CA33525D1AE5C2E70081096F /* JSONIteration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA33525C1AE5C2E70081096F /* JSONIteration.swift */; };
 		CA805E221ADC32930001B11B /* JSONTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA805E211ADC32930001B11B /* JSONTypes.swift */; };
 		CA805E251ADC43B40001B11B /* NSString.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA805E241ADC43B40001B11B /* NSString.swift */; };
 		CAB847171AD6FA6F0052EC65 /* THGJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = CAB847161AD6FA6F0052EC65 /* THGJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -60,6 +61,7 @@
 		CA1EBF941ADB726E005F128E /* jsontest_simple.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = jsontest_simple.json; sourceTree = "<group>"; };
 		CA1EBF961ADB736B005F128E /* jsontest_array.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = jsontest_array.json; sourceTree = "<group>"; };
 		CA3352591AE5BC1B0081096F /* JSONString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONString.swift; sourceTree = "<group>"; };
+		CA33525C1AE5C2E70081096F /* JSONIteration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONIteration.swift; sourceTree = "<group>"; };
 		CA805E211ADC32930001B11B /* JSONTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONTypes.swift; sourceTree = "<group>"; };
 		CA805E241ADC43B40001B11B /* NSString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSString.swift; sourceTree = "<group>"; };
 		CAB847111AD6FA6F0052EC65 /* THGJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = THGJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +123,7 @@
 				CA1EBF901ADB6EE0005F128E /* JSONSubscript.swift */,
 				CA805E211ADC32930001B11B /* JSONTypes.swift */,
 				CA3352591AE5BC1B0081096F /* JSONString.swift */,
+				CA33525C1AE5C2E70081096F /* JSONIteration.swift */,
 				CA805E241ADC43B40001B11B /* NSString.swift */,
 				CAB847141AD6FA6F0052EC65 /* Supporting Files */,
 			);
@@ -313,6 +316,7 @@
 				CA33525A1AE5BC1B0081096F /* JSONString.swift in Sources */,
 				CA805E221ADC32930001B11B /* JSONTypes.swift in Sources */,
 				CAB8472E1AD6FB9F0052EC65 /* JSON.swift in Sources */,
+				CA33525D1AE5C2E70081096F /* JSONIteration.swift in Sources */,
 				CA805E251ADC43B40001B11B /* NSString.swift in Sources */,
 				CA1EBF911ADB6EE0005F128E /* JSONSubscript.swift in Sources */,
 			);

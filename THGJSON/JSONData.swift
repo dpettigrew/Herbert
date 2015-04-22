@@ -10,6 +10,10 @@ import Foundation
 
 extension JSON {
 
+    /**
+    Returns a JSON encoded string representing this instance.
+    :param: pretty Determines whether output will be pretty-printed.
+    */
     public func asJSONString(pretty: Bool = false) -> String? {
         var options = NSJSONWritingOptions.allZeros
         if pretty {
@@ -37,6 +41,10 @@ extension JSON {
         return nil
     }
 
+    /**
+    Returns a JSON encoded NSData representing this instance.
+    :param: pretty Determines whether output will be pretty-printed.
+    */
     public func asJSONData(pretty: Bool = false) -> NSData? {
         var options = NSJSONWritingOptions.allZeros
         if pretty {

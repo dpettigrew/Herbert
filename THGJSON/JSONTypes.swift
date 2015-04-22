@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+Identifiable JSON Types
+*/
 public enum JSONType: String, Printable {
     case NullType = "Null"
     case StringType = "String"
@@ -31,6 +34,11 @@ extension JSON: Printable {
         return "JSON: value = \(rawValue!), type = \(type)"
     }
 
+    // MARK: Type checking
+
+    /**
+    Returns the high-level type of the value contained in this instance.
+    */
     public var type: JSONType {
         switch rawValue {
         case is NSNull:

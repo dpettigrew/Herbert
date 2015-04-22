@@ -345,8 +345,8 @@ class THGJSONTests: XCTestCase {
             let json = JSON(data: data)
 
             if let json = json {
-                let jsonString = json.asJSONString()
-                println(jsonString)
+                let jsonString = json.asJSONString(pretty: true)
+                println(jsonString!)
             } else {
                 XCTAssert(1 == 0, "We didn't get valid json input here, what gives?")
             }
@@ -364,23 +364,44 @@ class THGJSONTests: XCTestCase {
             let json = JSON(data: data)
 
             if let json = json {
-                var dict = Dictionary<String, AnyObject>()
+                var jsonDict = Dictionary<String, JSON>()
 
                 for (key, value) in json {
-                    dict[key as! String] = value
+                    jsonDict[key as! String] = value
                 }
 
-                let dirtIndex = dict["dirtIndex"]?.doubleValue
-                XCTAssertTrue(dirtIndex == 3.14, "The items weren't iterated properly!")
-
+                let dirtIndex = jsonDict["dirtIndex"]
+                XCTAssertTrue(dirtIndex?.asDouble == 3.14, "The items weren't iterated properly!")
             } else {
                 XCTAssert(1 == 0, "We didn't get valid json input here, what gives?")
             }
         } else {
             XCTAssert(file != nil, "Something happened to the test file, call 911!")
         }
-        
+    }
+    
+    func testArrayIterator() {
+        let file: String? = NSBundle(forClass: THGJSONTests.self).pathForResource("jsontest_array.json", ofType: nil)
+        if let file = file {
+            let data = NSData(contentsOfFile: file)
 
+            let json = JSON(data: data)
+
+            if let json = json {
+                var jsonArray = Array<JSON>()
+
+                for (index, value) in json {
+                    jsonArray.append(value)
+                }
+
+                let dennisString = jsonArray[2]["name"]
+                XCTAssertTrue(dennisString?.asString == "Dennis", "The items weren't iterated properly!")
+            } else {
+                XCTAssert(1 == 0, "We didn't get valid json input here, what gives?")
+            }
+        } else {
+            XCTAssert(file != nil, "Something happened to the test file, call 911!")
+        }
     }
     
 }

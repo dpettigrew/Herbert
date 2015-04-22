@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum JSONType: String {
+public enum JSONType: String, Printable {
     case NullType = "Null"
     case StringType = "String"
     case BoolType = "Bool"
@@ -237,5 +237,4 @@ extension JSON: Printable {
         }
         return nil
     }
-
 }

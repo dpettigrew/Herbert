@@ -94,7 +94,7 @@ extension JSON: Printable {
 
     // MARK: -- Accessors by type
 
-    public var asNull: NSNull? {
+    public func asNull() -> NSNull? {
         if let value = rawValue as? NSNull {
             return value
         }
@@ -103,7 +103,7 @@ extension JSON: Printable {
 
     // MARK: Collection type conversion
 
-    public var asArray:Array<AnyObject>? {
+    public func asArray() -> Array<AnyObject>? {
         var result: Array<AnyObject>? = nil
         switch rawValue {
         case let array as NSArray:
@@ -115,7 +115,29 @@ extension JSON: Printable {
         return result
     }
 
-    public var asDictionary:Dictionary<String, AnyObject>? {
+    public func asArray<T: JSONModel>() -> Array<T>? {
+        var result: Array<T>? = nil
+
+        if let array = rawValue as? Array<AnyObject> {
+            result = Array<T>()
+
+            for i in 0..<array.count {
+                let item = T(JSON.compose(array[i]))
+                if let item = item {
+                    result?.append(item)
+                }
+            }
+        }
+
+        return result
+    }
+
+    @objc
+    public func asArray(aClass: AnyClass) -> NSArray? {
+        return nil
+    }
+    
+    public func asDictionary() -> Dictionary<String, AnyObject>? {
         var result: Dictionary<String, AnyObject>? = nil
         switch rawValue {
         case let dictionary as NSDictionary:
@@ -127,13 +149,29 @@ extension JSON: Printable {
         return result
     }
     
+    public func asDictionary<T: JSONModel>() -> Dictionary<String, T>? {
+        var result: Dictionary<String, T>? = nil
+
+        if let dictionary = rawValue as? Dictionary<String, AnyObject> {
+            result = Dictionary<String, T>()
+            for (key, value) in dictionary {
+                let item = T(JSON.compose(value))
+                if let item = item {
+                    result?[key] = item
+                }
+            }
+        }
+
+        return result
+    }
+    
     // MARK: String conversion
 
-    public var asString: String? {
+    public func asString() -> String? {
         if let value = rawValue as? String {
             return value
         } else if type == .BoolType {
-            if asBool! {
+            if asBool()! {
                 return "true"
             } else {
                 return "false"
@@ -146,7 +184,7 @@ extension JSON: Printable {
 
     // MARK: Bool conversion
 
-    public var asBool: Bool? {
+    public func asBool() -> Bool? {
         if let value = rawValue as? NSNumber {
             return value.boolValue
         } else if let value = rawValue as? NSString {
@@ -157,7 +195,7 @@ extension JSON: Printable {
 
     // MARK: Int conversion
 
-    public var asInt: Int? {
+    public func asInt() -> Int? {
         if let value = rawValue as? NSNumber {
             return value.integerValue
         } else if let value = rawValue as? NSString {
@@ -166,7 +204,7 @@ extension JSON: Printable {
         return nil
     }
 
-    public var asInt32: Int32? {
+    public func asInt32() -> Int32? {
         if let value = rawValue as? NSNumber {
             return value.intValue
         } else if let value = rawValue as? NSString {
@@ -175,7 +213,7 @@ extension JSON: Printable {
         return nil
     }
 
-    public var asInt64: Int64? {
+    public func asInt64() -> Int64? {
         if let value = rawValue as? NSNumber {
             return value.longLongValue
         } else if let value = rawValue as? NSString {
@@ -186,7 +224,7 @@ extension JSON: Printable {
 
     // MARK: UInt conversion
 
-    public var asUInt: UInt? {
+    public func asUInt() -> UInt? {
         if let value = rawValue as? NSNumber {
             // NSNumber's unsignedIntegerValue returns an "Int" instead of a "UInt".
             return value.unsignedLongValue
@@ -196,7 +234,7 @@ extension JSON: Printable {
         return nil
     }
 
-    public var asUInt32: UInt32? {
+    public func asUInt32() -> UInt32? {
         if let value = rawValue as? NSNumber {
             return value.unsignedIntValue
         } else if let value = rawValue as? NSString {
@@ -205,7 +243,7 @@ extension JSON: Printable {
         return nil
     }
 
-    public var asUInt64: UInt64? {
+    public func asUInt64() -> UInt64? {
         if let value = rawValue as? NSNumber {
             return value.unsignedLongLongValue
         } else if let value = rawValue as? NSString {
@@ -216,7 +254,7 @@ extension JSON: Printable {
 
     // MARK: Decimal conversion
 
-    public var asFloat: Float? {
+    public func asFloat() -> Float? {
         if let value = rawValue as? NSNumber {
             return value.floatValue
         } else if let value = rawValue as? NSString {
@@ -225,7 +263,7 @@ extension JSON: Printable {
         return nil
     }
 
-    public var asDouble: Double? {
+    public func asDouble() -> Double? {
         if let value = rawValue as? NSNumber {
             return value.doubleValue
         } else if let value = rawValue as? NSString {
@@ -234,7 +272,7 @@ extension JSON: Printable {
         return nil
     }
 
-    public var asDecimalNumber: NSDecimalNumber? {
+    public func asDecimalNumber() -> NSDecimalNumber? {
         if let value = rawValue as? NSDecimalNumber {
             // sometimes, NSJSONSerializer creates NSDecimalNumbers, so just return it.
             return value

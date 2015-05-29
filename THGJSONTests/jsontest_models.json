@@ -1,0 +1,42 @@
+{
+    "mystring": "hello",
+    "myuint": 1234,
+    "mynumber": 3.14,
+    "myarray1": [
+             "1",
+             "2",
+             "3",
+             "4"
+             ],
+    "myarray2": [
+             "1",
+             "2",
+             "3",
+             "4"
+             ],
+    "myobject": {
+        "mystring": "sub-hello"
+    },
+    "myobjectarray": [
+        {
+            "mystring": "value1",
+        },
+        {
+            "mystring": "value2",
+        },
+        {
+            "mystring": "value3",
+        },
+        {
+            "mystring": "value4",
+        },
+    ],
+    "mydictionary": {
+        "someItem": {
+            "mystring": "someItem"
+        },
+        "someOtherItem": {
+            "mystring": "someOtherItem"
+        }
+    }
+}

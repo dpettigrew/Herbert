@@ -7,11 +7,15 @@
 //
 
 import Foundation
+#if NOFRAMEWORKS
+#else
 import THGLog
+#endif
 
 /**
 A classy class to make handling JSON simpler.
 */
+@objc(THGJSON)
 public class JSON {
 
     /**
@@ -60,6 +64,10 @@ public class JSON {
     */
     public let rawValue: AnyObject?
 
+    private init?(rawValue: AnyObject?) {
+        self.rawValue = rawValue
+    }
+
     internal class func decompose(object: AnyObject) -> AnyObject {
         switch object {
         case let array as NSArray:
@@ -83,6 +91,17 @@ public class JSON {
 
         default:
             return object
+        }
+    }
+
+    internal class func compose(object: AnyObject) -> JSON? {
+        switch object {
+        case let dictionary as NSDictionary:
+            let json = JSON(rawValue: dictionary)
+            return json
+
+        default:
+            return nil
         }
     }
 

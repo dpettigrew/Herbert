@@ -7,7 +7,10 @@
 //
 
 import Foundation
+#if NOFRAMEWORKS
+#else
 import THGLog
+#endif
 
 extension JSON {
 
